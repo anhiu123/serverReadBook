@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/bootstrap-5.3.0-dist/css/bootstrap.min.css">     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    
+ <!-- khối 1  -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 d-flex align-items-center" style="height: 100px;">
+                <div style="font-size: 24px;">
+                    <i class="fas fa-phone" style="font-size: 34px;"></i>
+                    +84 0967977673
+                </div>
+                <div style="font-size: 24px;" class="ms-5">
+                    <i class="far fa-envelope"  style="font-size: 34px;"></i>
+                    hieu@gmail.com
+                </div>
+                <div style="font-size: 24px; margin-left:730px ;">
+                    <i class="fas fa-bell"  style="font-size: 34px;"></i>
+                    Thông Báo
+                </div>
+                <div style="font-size: 24px; margin-left:130px ;">
+                    <i class="fas fa-user"  style="font-size: 34px;"></i>
+                Admin
+                </div>
+             
+            </div>
+            <hr>
+
+            <!-- Khối 2 -->
+            <div class=" col-12">
+                <div class="align-items-center bg-white">
+                    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                        <div class="container-fluid">
+                          <a class="navbar-brand" href="/sanpham">Sách </a>
+                          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+                          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item dropdown">
+                                    <a class="navbar-brand dropdown-toggle" href="add" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                      Thêm  Sách
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                  
+                                    
+                                      <li><a class="dropdown-item" href="/sanpham/listloai"> Thể Loại </a></li>
+                                      <li><a class="dropdown-item" href="/sanpham/addloai"> Thêm Thể Loại </a></li>
+                  
+                                    </ul>
+                                  </li>
+                                  <li class="nav-item dropdown">
+                                    <a class="navbar-brand dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                      Tìm Kiếm Sách  
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                      <li><a class="dropdown-item" href="/sanpham/search">Tìm Kiếm</a></li>
+                                      <li><a class="dropdown-item" href="#">Category</a></li>
+                                      <li><hr class="dropdown-divider"></li>
+                                      <li><a class="dropdown-item" href="#">Tag</a></li>
+                                    </ul>
+                                  </li>
+                                
+                                    <li class="nav-item dropdown">
+                                      <a class="navbar-brand dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Tài Khoản 
+                                      </a>
+                                      <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="/taikhoan">Danh Sách</a></li>
+                                        <li><a class="dropdown-item" href="/taikhoan/add">Thêm</a></li>
+                                      </ul>
+                                    </li>
+                               
+                      </nav>
+                </div>
+            </div>
+            
+            <div class="ms-4 ms-4"><h1> Thể Loại </h1>
+              <a href="/sanpham/listloai">Home/</a>
+            
+            
+            </div>
+            <!-- khối 3 -->
+            <div class=" col-12 col-sm-3 col-md-2"></div>
+            <!-- khối 4 -->
+            <div class=" col-12 col-sm-9 col-md-8">
+              <div class="mt-5">
+        
+                <table class="table" border="1" >
+
+                  <tr>
+                    <th>ID</th> 
+                       <th>Tên Thể Loại Phẩm</th> 
+                       <th>Trạng Thái</th> 
+                         
+                  </tr>
+
+                  <h2>Tổng Số Thể Loại : <%= sl %> </h2>
+
+                  <% list1.forEach(function(item){ %>
+      
+                    <tr>
+                      <td><%= item.id %></td>  
+                          <td><%= item.name %></td>  
+                            <td><a href="/sanpham/deletel/<%= item.id %>"><img src="https://tse1.mm.bing.net/th?id=OIP.wCEHnDYSVK0S_ewpHgsY3QHaHV&pid=Api&P=0&h=180" style="width: 30px;height: 30px;" alt=""></a>
+                              <a href="/sanpham/updatel/<%= item.id %>"><img src="https://tse1.mm.bing.net/th?id=OIP.FnU8so-q6D6zY926B2SpWgAAAA&pid=Api&P=0&h=180" style="width: 30px;height: 30px;" alt=""></a>
+                            </td>
+                            
+                          
+                    </tr>
+    
+                <% }) %>
+      
+                
+              </table>
+            </div></div>
+           
+            <div class=" col-12           col-md-2 d-none d-md-block"></div>
+            <div class=" col-12 ">
+              <img style="margin-left: 800px;margin-top: 50;" src="https://tse3.mm.bing.net/th?id=OIP.vR3c8gJDtTZuFFJLa3nHcwAAAA&pid=Api&P=0&h=180" alt="Mô tả ảnh" width="200" height="150">
+            </div>
+        </div>
+</div> 
+
+
+
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script> 
+    <script src="/bootstrap-5.3.0-dist/js/bootstrap.min.js"></script>
+</body>
+</html>

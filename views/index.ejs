@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Đăng nhập</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Đăng nhập</h1>
+    <%=msg %>
+    <form action="" method="POST">
+      <label for="username">Tên đăng nhập:</label>
+      <input type="text" id="username" name="username" required>
+      <br>
+      <!-- <label for="password">Mật khẩu:</label>
+      <input type="password" id="password" name="password" required> -->
+      <label for="password">Mật khẩu:</label>
+<div class="password-container">
+  <input type="password" id="password" name="passwd" required>
+  <span class="toggle-password" onclick="togglePasswordVisibility()">&#128065;</span>
+</div>
+      <br>
+      <button type="submit">Đăng nhập</button>
+   
+    </form>
+  </div>
+
+
+  <script>
+    function togglePasswordVisibility() {
+      var passwordInput = document.getElementById("password");
+      var toggleIcon = document.querySelector(".toggle-password");
+  
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleIcon.innerHTML = "&#128064;";
+      } else {
+        passwordInput.type = "password";
+        toggleIcon.innerHTML = "&#128065;";
+      }
+    }
+  </script>
+
+</body>
+</html>
