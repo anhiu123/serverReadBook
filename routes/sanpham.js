@@ -11,7 +11,7 @@ var multer = require('multer');
 var objUpload = multer({dest:'./tmp'})
 
 //http://localhost:3000/ trang chủ 
-router.get('/',checkLG.yeu_cau_login, sp.spList);
+router.get('/', sp.spList);
 // router.post('/', sp.spList);
 
 router.get('/add', sp.spAdd);

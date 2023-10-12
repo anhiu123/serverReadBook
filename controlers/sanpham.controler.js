@@ -4,6 +4,7 @@ var md1 = require('../modal/theloai.modal');
 var fs = require('fs'); 
 const { db } = require("./firebaseconfig");
 const { set, ref } = require("firebase/database");
+const { log } = require('console');
 
 
   const newData = {
@@ -123,6 +124,19 @@ exports.spList = async (req,res,next) =>{
 
    
     if(req.method == 'POST'){
+
+      try {
+        if (!req.file) {
+          msg = "Chưa chọn ảnh";
+          return res.send("Chưa Chọn Ảnh");
+        }
+      } catch (error) {
+        
+      }
+
+      if(req.body.name.length<1 || req.body.loai.length<1 || req.body.tieude.length<1){
+        return res.send("Chưa  Nhập Đủ Thông Tin");
+      }
    
       fs.rename(req.file.path, "./public/uploads/" + req.file.originalname,(err)=>{
 
@@ -133,6 +147,8 @@ exports.spList = async (req,res,next) =>{
         }
 
     });
+
+   
 
   
 
@@ -370,6 +386,12 @@ exports.spTl1 = async (req,res,next) =>{
     let objU = req.session.userLogin;
 
     if(req.method == 'POST'){
+
+      if(req.body.name.length<1 || req.body.id.length<0){
+        console.log("Phải Nhập Tên");
+        msg = "Phải Nhập Đủ Thông Tin"
+       return res.render('sanpham/addloai',{msg:msg,objU:objU});
+      }
   
       let name = req.body.name;
       db.ref("theloai/" + req.body.id).set({
@@ -379,6 +401,7 @@ exports.spTl1 = async (req,res,next) =>{
        if (error) {
          console.error("Lỗi khi đặt dữ liệu:", error);
        } else {
+        msg = "Thêm Thành Công";
          console.log("Dữ liệu đã được đặt thành công!");
        }
      });
@@ -426,11 +449,17 @@ exports.tlDel = async (req,res,next) =>{
 exports.tlUp = async (req,res,next) =>{
 
     let id_tl = req.params.id_tl;
-    
+    let msg = 'A';
 
     try {
         // xử lí sư kiện post 
         if(req.method=='POST'){
+
+          if(req.body.name.length<1 ){
+            console.log("Phải Nhập Tên");
+            msg = "Phải Nhập Đủ Thông Tin";
+           return res.render('sanpham/updatel',{msg:msg});
+          }
           
 
           const ref = db.ref('theloai/' + id_tl);
@@ -454,7 +483,7 @@ exports.tlUp = async (req,res,next) =>{
         }  
       
     } catch (error) {
-        msg = error.message;
+     
     }
 
 
