@@ -10,6 +10,7 @@ var checkSP = require('../middleware/check-AddSP');
 var multer = require('multer');
 var objUpload = multer({dest:'./tmp'})
 
+
 //http://localhost:3000/ trang chủ 
 router.get('/', sp.spList);
 // router.post('/', sp.spList);
@@ -23,7 +24,7 @@ router.get('/search', sp.spSearch);
 router.get('/listloai', sp.spTl);
 
 router.get('/addloai', sp.spTl1);
-router.post('/addloai', sp.spTl1);
+router.post('/addloai', objUpload.single('anh'), sp.spTl1);
 
 router.get('/delete/:id_sp', sp.spDel);
 router.post('/delete/:id_sp', sp.spDel);
@@ -35,7 +36,7 @@ router.get('/deletel/:id_tl', sp.tlDel);
 router.post('/deletel/:id_tl', sp.tlDel);
 
 router.get('/updatel/:id_tl', sp.tlUp);
-router.post('/updatel/:id_tl', sp.tlUp);
+router.post('/updatel/:id_tl', objUpload.single('anh'), sp.tlUp);
 
 
 

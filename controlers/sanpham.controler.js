@@ -283,6 +283,18 @@ exports.spUpdate = async (req,res,next) =>{
         // xử lí sư kiện post 
         if(req.method=='POST'){
 
+          try {
+            if (!req.file) {
+              msg = "Chưa chọn ảnh";
+              return res.send("Chưa Chọn Ảnh");
+            }
+          } catch (error) {
+            
+          }
+          if(req.body.name.length<1 || req.body.loai.length<1 || req.body.tieude.length<1){
+            return res.send("Chưa  Nhập Đủ Thông Tin");
+          }
+
             fs.rename(req.file.path, "./public/uploads/" + req.file.originalname,(err)=>{
 
                 if(err){
@@ -387,6 +399,28 @@ exports.spTl1 = async (req,res,next) =>{
 
     if(req.method == 'POST'){
 
+
+      try {
+        if (!req.file) {
+          msg = "Chưa chọn ảnh";
+          return res.send("Chưa Chọn Ảnh");
+        }
+      } catch (error) {
+        
+      }
+        
+   
+      fs.rename(req.file.path, "./public/uploads/" + req.file.originalname,(err)=>{
+
+        if(err){
+            console.log(err);
+        }else{
+            console.log("url : http://localhost:3000/uploads/" + req.file.originalname);
+        }
+
+    });
+
+
       if(req.body.name.length<1){
         console.log("Phải Nhập Tên");
         msg = "Phải Nhập Đủ Thông Tin"
@@ -397,6 +431,7 @@ exports.spTl1 = async (req,res,next) =>{
       db.ref("theloai/" + new Date().getTime()).set({
        id : new Date().getTime(),
        name: name,
+       imageCategory : "http://localhost:3000/uploads/" + req.file.originalname,
      }, (error) => {
        if (error) {
          console.error("Lỗi khi đặt dữ liệu:", error);
@@ -455,6 +490,27 @@ exports.tlUp = async (req,res,next) =>{
         // xử lí sư kiện post 
         if(req.method=='POST'){
 
+          try {
+            if (!req.file) {
+              msg = "Chưa chọn ảnh";
+              return res.send("Chưa Chọn Ảnh");
+            }
+          } catch (error) {
+            
+          }
+            
+       
+          fs.rename(req.file.path, "./public/uploads/" + req.file.originalname,(err)=>{
+    
+            if(err){
+                console.log(err);
+            }else{
+                console.log("url : http://localhost:3000/uploads/" + req.file.originalname);
+            }
+    
+        });
+
+
           if(req.body.name.length<1 ){
             console.log("Phải Nhập Tên");
             msg = "Phải Nhập Đủ Thông Tin";
@@ -465,10 +521,12 @@ exports.tlUp = async (req,res,next) =>{
           const ref = db.ref('theloai/' + id_tl);
 
           let name = req.body.name;
+          let imageCategory = "http://localhost:3000/uploads/" + req.file.originalname;
     
           
           const newData = {
             name: name,
+            imageCategory : imageCategory
 
           };
           ref.update(newData)

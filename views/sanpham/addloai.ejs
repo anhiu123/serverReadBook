@@ -95,9 +95,12 @@
                 <% if(msg.length>0) {%>
                     <h3> <%= msg %></h3>
                     <% } %>
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                
                       
+                  <label for="exampleInputPassword1" class="form-label">Ảnh Thể Loại  </label>
+                  <input type="file" class="form-control , mb-3" name="anh">
+
                         <label  for="exampleInputPassword1" class="form-label">Tên</label>
                         <input type="text" class="form-control , mb-3" name="name">
                     

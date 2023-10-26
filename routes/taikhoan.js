@@ -4,6 +4,8 @@ var router = express.Router();
 /* GET home page. */
 //nhúng controler 
 var tk = require('../controlers/taikhoan.controler')
+
+
 //http://localhost:3000/ trang chủ 
 router.get('/', tk.tkList);
 router.post('/', tk.tkList);
