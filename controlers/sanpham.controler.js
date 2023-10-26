@@ -157,8 +157,8 @@ exports.spList = async (req,res,next) =>{
      let loai = req.body.loai;
      let tieude = req.body.tieude;
 
-     db.ref("sach/" + req.body.id).set({
-      id : req.body.id,
+     db.ref("sach/" + new Date().getTime()).set({
+      id : new Date().getTime(),
       name: name,
       image: anh,
       theloai : loai,
@@ -387,15 +387,15 @@ exports.spTl1 = async (req,res,next) =>{
 
     if(req.method == 'POST'){
 
-      if(req.body.name.length<1 || req.body.id.length<0){
+      if(req.body.name.length<1){
         console.log("Phải Nhập Tên");
         msg = "Phải Nhập Đủ Thông Tin"
        return res.render('sanpham/addloai',{msg:msg,objU:objU});
       }
   
       let name = req.body.name;
-      db.ref("theloai/" + req.body.id).set({
-       id : req.body.id,
+      db.ref("theloai/" + new Date().getTime()).set({
+       id : new Date().getTime(),
        name: name,
      }, (error) => {
        if (error) {
